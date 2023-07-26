@@ -1,0 +1,25 @@
+<app-header></app-header>
+<div class="app-container">
+  <div class="admin">
+    <div class="container">
+      <div class="centered">
+        <div class="card" *ngFor="let card of cards; index as index">
+          <p>{{ card.origin }}</p>
+          <p>{{ card.target }}</p>
+          <div class="button-group">
+            <button class="edit-button" (click)="onDisplayDetails(card)">
+              Details
+            </button>
+            <button class="delete-button" (click)="onDeleteCard(index)">
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="other-component">
+    <app-card-details></app-card-details>
+  </div>
+</div>

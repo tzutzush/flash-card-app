@@ -1,0 +1,52 @@
+<h1>Card Details</h1>
+<p>Click on "Details" to display details.</p>
+<button
+  class="create-button"
+  [disabled]="currentCard || creating"
+  (click)="onCreateCard()"
+>
+  Create
+</button>
+
+<div class="container" *ngIf="currentCard">
+  <div class="old-ones">
+    <div>Old origin: {{ currentCard.origin }}</div>
+    <div>Old target: {{ currentCard.target }}</div>
+    <div>Old category: {{ currentCard.category }}</div>
+  </div>
+  <form [formGroup]="cardForm">
+    <label for="origin">New Origin: </label>
+    <input id="origin" type="text" formControlName="origin" />
+
+    <label for="target">New Target: </label>
+    <input id="target" type="text" formControlName="target" />
+
+    <label for="category">New Category: </label>
+    <input id="category" type="text" formControlName="category" />
+  </form>
+  <div>
+    <button type="submit" [disabled]="!cardForm.valid" (click)="onSave()">
+      Save changes
+    </button>
+    <button (click)="onCancel()">Cancel</button>
+  </div>
+</div>
+
+<div class="container" *ngIf="creating && !currentCard">
+  <form [formGroup]="cardForm">
+    <label for="origin">Origin: </label>
+    <input id="origin" type="text" formControlName="origin" />
+
+    <label for="target">Target: </label>
+    <input id="target" type="text" formControlName="target" />
+
+    <label for="category">Category: </label>
+    <input id="category" type="text" formControlName="category" />
+  </form>
+  <div>
+    <button type="submit" [disabled]="!cardForm.valid" (click)="onCreate()">
+      Save changes
+    </button>
+    <button (click)="onCancel()">Cancel</button>
+  </div>
+</div>
