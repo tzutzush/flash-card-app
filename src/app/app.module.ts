@@ -10,7 +10,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
-import { environments } from './environments/environment';
+import { environment } from './environments/environment';
 import { AdminComponent } from './cards/admin/admin.component';
 import { CardDetailsComponent } from './cards/admin/card-details/card-details.component';
 import { UserComponent } from './cards/user/user.component';
@@ -33,7 +33,7 @@ import { InquiryComponent } from './cards/user/inquiry/inquiry.component';
     MatDialogModule,
     ReactiveFormsModule,
     AngularFireAuthModule,
-    AngularFireModule.initializeApp(environments),
+    AngularFireModule.initializeApp(environment.firebase),
   ],
   providers: [],
   bootstrap: [AppComponent],

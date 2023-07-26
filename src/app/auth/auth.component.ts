@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { AuthService } from './auth.service';
-import { WindowService } from './window.service';
-import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-auth',
@@ -10,11 +8,9 @@ import { FormBuilder } from '@angular/forms';
 })
 export class AuthComponent {
   public winRef: unknown;
-  constructor(
-    public authService: AuthService,
-    private windowRef: WindowService,
-    private formBuilder: FormBuilder
-  ) {
-    this.winRef = windowRef;
+  constructor(public authService: AuthService) {}
+
+  logInWithGoogle() {
+    this.authService.googleSignIn();
   }
 }

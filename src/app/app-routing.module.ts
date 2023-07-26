@@ -8,7 +8,6 @@ import { InquiryComponent } from './cards/user/inquiry/inquiry.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/auth', pathMatch: 'full' },
-  // { path: '', redirectTo: '/admin', pathMatch: 'full' },
   { path: 'auth', component: AuthComponent },
   { path: 'admin', component: AdminComponent },
   { path: 'user', component: UserComponent },

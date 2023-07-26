@@ -1,30 +1,30 @@
 import { Injectable } from '@angular/core';
-import { AuthProvider, GoogleAuthProvider } from 'firebase/auth';
+import { GoogleAuthProvider } from 'firebase/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
-import { adminUID } from './constants';
+
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private router: Router, private afAuth: AngularFireAuth) {}
+  constructor(private router: Router, private fireAuth: AngularFireAuth) {}
 
-  googleAuth() {
-    return this.authLogin(new GoogleAuthProvider());
+  googleSignIn() {
+    const provider = new GoogleAuthProvider();
+    provider.setCustomParameters({ prompt: 'select_account' });
+    return this.fireAuth.signInWithPopup(provider).then(
+      (result) => {
+        this.router.navigate(['/user']);
+        localStorage.setItem('token', JSON.stringify(result.user?.uid));
+      },
+      (error) => {
+        alert(error);
+      }
+    );
   }
 
-  authLogin(provider: AuthProvider) {
-    return this.afAuth
-      .signInWithPopup(provider)
-      .then((result) => {
-        if (result.user?.uid === adminUID) {
-          this.router.navigate(['admin']);
-        } else {
-          this.router.navigate(['user']);
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  logout() {
+    this.fireAuth.signOut();
+    this.router.navigate(['/auth']);
   }
 }
