@@ -1,9 +1,16 @@
-.container {
+.container{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 80vh;
+}
+
+.card-container {
   margin: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 80vh;
+
 }
 
 .card {
@@ -15,7 +22,6 @@
   background-color: #f0f0f0;
   border-radius: 10px;
   margin: 20px;
-  cursor: pointer;
   transition: transform 0.2s ease-in-out;
 
   h2 {
@@ -25,4 +31,9 @@
   &:hover {
     transform: scale(1.05);
   }
+}
+
+.navigation{
+  display: flex;
+  justify-content: first baseline;
 }

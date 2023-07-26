@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
+import { adminUID } from './constants';
 @Injectable({
   providedIn: 'root',
 })
@@ -16,10 +17,11 @@ export class AuthService {
     return this.afAuth
       .signInWithPopup(provider)
       .then((result) => {
-        this.router.navigate(['categories']);
-        console.log(
-          `You have successfully logged in ${result.user?.displayName}`
-        );
+        if (result.user?.uid === adminUID) {
+          this.router.navigate(['admin']);
+        } else {
+          this.router.navigate(['user']);
+        }
       })
       .catch((error) => {
         console.log(error);

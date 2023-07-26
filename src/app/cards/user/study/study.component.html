@@ -1,8 +1,15 @@
+<app-header></app-header>
 <div class="container">
-  <div class="card">
-    <div>{{ currentCard?.origin }}</div>
-    &nbsp;/&nbsp;
-    <div>{{ currentCard?.target }}</div>
+  <div class="card-container">
+    <div class="card">
+      <div>{{ currentCard?.origin }}</div>
+    </div>
+    <div class="card">
+      <div>{{ currentCard?.target }}</div>
+    </div>
+    <button (click)="onNext()">Next</button>
   </div>
-  <button (click)="onNext()">Next</button>
+  <div class="navigation">
+    <button (click)="navigateBack()">Go back</button>
+  </div>
 </div>

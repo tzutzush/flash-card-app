@@ -1,13 +1,42 @@
 <!-- eslint-disable @angular-eslint/template/click-events-have-key-events -->
 <!-- eslint-disable @angular-eslint/template/interactive-supports-focus -->
-<!-- <app-header></app-header>
+<app-header></app-header>
+<div class="information">
+  You can choose between study and inquiry. In study you can see both sides of
+  the cards, in inquiry you are only entitled to see one side for the first
+  time. Choose a category to start.
+</div>
 <div class="container">
-  <div class="card" (click)="onStudy()">
-    <h2>Study</h2>
+  <div>
+    <div class="title-container">
+      <h1 class="title">Study</h1>
+    </div>
+    <div class="categories">
+      <button (click)="goToCorrespondingComponent('noun', 'study')">
+        Noun
+      </button>
+      <button (click)="goToCorrespondingComponent('verb', 'study')">
+        Verb
+      </button>
+      <button (click)="goToCorrespondingComponent('adjective', 'study')">
+        Adjective
+      </button>
+    </div>
   </div>
-
-  <div class="card" routerLink="inquiry">
-    <h2>Inquiry</h2>
+  <div>
+    <div class="title-container">
+      <h1 class="title">Inquiry</h1>
+    </div>
+    <div class="categories">
+      <button (click)="goToCorrespondingComponent('noun', 'inquiry')">
+        Noun
+      </button>
+      <button (click)="goToCorrespondingComponent('verb', 'inquiry')">
+        Verb
+      </button>
+      <button (click)="goToCorrespondingComponent('adjective', 'inquiry')">
+        Adjective
+      </button>
+    </div>
   </div>
-</div> -->
-<router-outlet></router-outlet>
+</div>

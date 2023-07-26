@@ -9,35 +9,51 @@ import { Card } from '../../card.model';
 })
 export class InquiryComponent implements OnInit {
   private cards: Card[] = [];
-  public currentCard: Card | null = null;
-  private currentIndex = 0;
+  private category = '';
+  public currentCards: Card[] = [];
+  public correctGuess = 0;
+  public wrongGuess = 0;
 
   constructor(private cardService: CardService) {}
 
   ngOnInit(): void {
-    this.cards = this.cardService.getCards();
-    this.currentCard = this.cards[this.currentIndex];
+    this.cardService.category.subscribe((category) => {
+      this.category = category;
+    });
+    this.cards = this.cardService.getCardsByCategory(this.category);
+    this.currentCards = this.getNextNineCards();
   }
 
-  turnCard() {
-    if (this.currentCard) {
-      this.currentCard.flipped = true;
+  private getNextNineCards(): Card[] {
+    if (this.cards.length === 0) {
+      this.cards = this.cardService.getCardsByCategory(this.category);
     }
+    let nextNineCards;
+    if (this.cards.length < 9) {
+      nextNineCards = this.cards.splice(0, this.cards.length);
+    } else {
+      nextNineCards = this.cards.splice(0, 9);
+    }
+    return nextNineCards;
   }
 
-  onRightGuess() {
-    this.currentIndex++;
-    if (this.currentIndex >= this.cards.length) {
-      this.currentIndex = 0;
-    }
-    this.currentCard = this.cards[this.currentIndex];
+  nextCards() {
+    this.currentCards = this.getNextNineCards();
+    this.correctGuess = 0;
+    this.wrongGuess = 0;
   }
 
-  onWrongGuess() {
-    this.currentIndex++;
-    if (this.currentIndex >= this.cards.length) {
-      this.currentIndex = 0;
-    }
-    this.currentCard = this.cards[this.currentIndex];
+  flipCard(card: Card) {
+    card.flipped = true;
+  }
+
+  onCorrectGuess(card: Card) {
+    card.thrownIntoBucket = true;
+    this.correctGuess++;
+  }
+
+  onWrongGuess(card: Card) {
+    card.thrownIntoBucket = true;
+    this.wrongGuess++;
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CardService } from '../../card-service.service';
 import { Card } from '../../card.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-study',
@@ -9,13 +10,17 @@ import { Card } from '../../card.model';
 })
 export class StudyComponent implements OnInit {
   private cards: Card[] = [];
-  public currentCard: Card | null = null;
   private currentIndex = 0;
+  private category = '';
+  public currentCard: Card | null = null;
 
-  constructor(private cardService: CardService) {}
+  constructor(private cardService: CardService, private router: Router) {}
 
   ngOnInit(): void {
-    this.cards = this.cardService.getCards();
+    this.cardService.category.subscribe((category) => {
+      this.category = category;
+    });
+    this.cards = this.cardService.getCardsByCategory(this.category);
     this.currentCard = this.cards[this.currentIndex];
   }
 
@@ -25,5 +30,9 @@ export class StudyComponent implements OnInit {
       this.currentIndex = 0;
     }
     this.currentCard = this.cards[this.currentIndex];
+  }
+
+  navigateBack() {
+    this.router.navigate(['user']);
   }
 }
