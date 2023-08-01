@@ -1,35 +1,29 @@
 .app-container {
-  display: flex;
-  gap: 25px;
+  height: 100%;
 }
 
+.admin-section {
+  display: flex;
+  justify-content: space-evenly;
+}
 .container {
-  width: 800px;
-  margin: 0 auto;
+  display: flex;
+  justify-content: left;
+  width: 50%;
   padding: 20px;
+  height: 100%;
 
-  .create-button {
-    display: block;
-    margin: 10px auto;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-
-  .centered {
+  .card-box {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
     overflow-y: auto;
-    overflow-x: hidden;
     border: 1px solid #ccc;
     flex-grow: 1;
     gap: 5px;
-    height: 80vh;
+    height: 800px;
 
     .card {
       background-color: #fff;
@@ -44,22 +38,29 @@
       justify-content: space-between;
       margin-top: 10px;
 
-      .edit-button,
-      .delete-button {
+      .btn {
+        font-size: 16px;
         padding: 5px 10px;
-        background-color: #007bff;
-        color: #fff;
         border: none;
         border-radius: 5px;
         cursor: pointer;
       }
 
-      .edit-button {
-        background-color: #28a745;
+      .edit-btn {
+        background-color: #ff9465;
+
+        &:hover{
+          background-color: #ffaf8c;
+        }
       }
 
-      .delete-button {
+      .delete-btn {
         background-color: #dc3545;
+        color: #fff;
+
+        &:hover{
+          background-color: #e04958;
+        }
       }
     }
   }

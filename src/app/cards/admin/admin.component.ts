@@ -1,29 +1,22 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CardService } from '../card-service.service';
 import { Card } from '../card.model';
-import { Subscription } from 'rxjs';
-import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss'],
 })
-export class AdminComponent implements OnInit, OnDestroy {
+export class AdminComponent implements OnInit {
   public cards: Card[] = [];
-  private cardChangeSubscription!: Subscription;
 
-  constructor(private cardService: CardService, private dialog: MatDialog) {}
+  constructor(private cardService: CardService) {}
 
   ngOnInit(): void {
     this.cards = this.cardService.getCards();
     this.cardService.cardsChanged.subscribe((cards: Card[]) => {
       this.cards = cards;
     });
-  }
-
-  ngOnDestroy(): void {
-    this.cardChangeSubscription.unsubscribe();
   }
 
   onDisplayDetails(card: Card) {

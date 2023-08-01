@@ -1,25 +1,24 @@
-<app-header></app-header>
 <div class="app-container">
-  <div class="admin">
+  <app-header></app-header>
+  <div class="admin-section">
     <div class="container">
-      <div class="centered">
+      <div class="card-box">
         <div class="card" *ngFor="let card of cards; index as index">
           <p>{{ card.origin }}</p>
           <p>{{ card.target }}</p>
           <div class="button-group">
-            <button class="edit-button" (click)="onDisplayDetails(card)">
+            <button class="edit-btn btn" (click)="onDisplayDetails(card)">
               Details
             </button>
-            <button class="delete-button" (click)="onDeleteCard(index)">
+            <button class="delete-btn btn" (click)="onDeleteCard(index)">
               Delete
             </button>
           </div>
         </div>
       </div>
     </div>
-  </div>
-
-  <div class="other-component">
-    <app-card-details></app-card-details>
+    <div class="container">
+      <app-card-details></app-card-details>
+    </div>
   </div>
 </div>

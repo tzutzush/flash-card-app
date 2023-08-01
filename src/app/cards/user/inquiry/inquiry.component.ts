@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CardService } from '../../card-service.service';
 import { Card } from '../../card.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-inquiry',
   templateUrl: './inquiry.component.html',
   styleUrls: ['./inquiry.component.scss'],
 })
-export class InquiryComponent implements OnInit {
+export class InquiryComponent implements OnInit, OnDestroy {
   private cards: Card[] = [];
   private category = '';
+  private categorySubscription!: Subscription;
   public currentCards: Card[] = [];
   public correctGuess = 0;
   public wrongGuess = 0;
@@ -17,11 +19,19 @@ export class InquiryComponent implements OnInit {
   constructor(private cardService: CardService) {}
 
   ngOnInit(): void {
-    this.cardService.category.subscribe((category) => {
-      this.category = category;
-    });
-    this.cards = this.cardService.getCardsByCategory(this.category);
-    this.currentCards = this.getNextNineCards();
+    this.categorySubscription = this.cardService.category.subscribe(
+      (category) => {
+        this.category = category;
+        this.cards = this.cardService.getCardsByCategory(this.category);
+        this.currentCards = this.getNextNineCards();
+      }
+    );
+  }
+
+  ngOnDestroy(): void {
+    if (this.categorySubscription !== undefined) {
+      this.categorySubscription.unsubscribe();
+    }
   }
 
   private getNextNineCards(): Card[] {
@@ -38,6 +48,7 @@ export class InquiryComponent implements OnInit {
   }
 
   nextCards() {
+    console.log('Next');
     this.currentCards = this.getNextNineCards();
     this.correctGuess = 0;
     this.wrongGuess = 0;

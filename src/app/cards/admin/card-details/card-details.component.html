@@ -1,7 +1,10 @@
 <h1>Card Details</h1>
-<p>Click on "Details" to display details.</p>
+<p>
+  Click on "Details" to display details, you can edit the card as well if you
+  wish to do so.
+</p>
 <button
-  class="create-button"
+  class="create-btn btn"
   [disabled]="currentCard || creating"
   (click)="onCreateCard()"
 >
@@ -9,10 +12,19 @@
 </button>
 
 <div class="container" *ngIf="currentCard">
-  <div class="old-ones">
-    <div>Old origin: {{ currentCard.origin }}</div>
-    <div>Old target: {{ currentCard.target }}</div>
-    <div>Old category: {{ currentCard.category }}</div>
+  <div class="old-details">
+    <div class="detail">
+      <span class="property-flag">Old origin:</span>
+      <span>{{ currentCard.origin }}</span>
+    </div>
+    <div class="detail">
+      <span class="property-flag">Old target:</span>
+      <span>{{ currentCard.target }}</span>
+    </div>
+    <div class="detail">
+      <span class="property-flag">Old category:</span>
+      <span>{{ currentCard.category }}</span>
+    </div>
   </div>
   <form [formGroup]="cardForm">
     <label for="origin">New Origin: </label>
@@ -44,9 +56,14 @@
     <input id="category" type="text" formControlName="category" />
   </form>
   <div>
-    <button type="submit" [disabled]="!cardForm.valid" (click)="onCreate()">
+    <button
+      class="save-btn btn"
+      type="submit"
+      [disabled]="!cardForm.valid"
+      (click)="onCreate()"
+    >
       Save changes
     </button>
-    <button (click)="onCancel()">Cancel</button>
+    <button class="cancel-btn btn" (click)="onCancel()">Cancel</button>
   </div>
 </div>

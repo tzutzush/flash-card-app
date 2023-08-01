@@ -8,8 +8,7 @@ import { ReplaySubject, Subject } from 'rxjs';
 export class CardService {
   public selectedCard = new EventEmitter<Card>();
   public cardsChanged = new Subject<Card[]>();
-  public category = new ReplaySubject<string>();
-  private cardsByCategory: { [key: string]: Card[] } = {};
+  public category = new ReplaySubject<string>(1);
   private cards: Card[] = [
     {
       origin: 'apple',
@@ -108,19 +107,19 @@ export class CardService {
     this.cardsChanged.next([...this.cards]);
   }
 
-  getCards() {
+  getCards(): Card[] {
     return JSON.parse(JSON.stringify(this.cards));
   }
 
-  getCardsByCategory(category: string) {
-    for (const card of this.cards) {
-      const category = card.category;
-      if (!this.cardsByCategory[category]) {
-        this.cardsByCategory[category] = [];
-      }
-      this.cardsByCategory[category].push(card);
-    }
+  getCardsByCategory(category: string): Card[] {
+    const cards = this.getCards();
+    const cardsByCategory = [];
 
-    return this.cardsByCategory[category];
+    for (const card of cards) {
+      if (card.category === category) {
+        cardsByCategory.push(card);
+      }
+    }
+    return cardsByCategory;
   }
 }

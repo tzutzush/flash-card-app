@@ -8,19 +8,52 @@ p {
   margin-bottom: 20px;
 }
 
+.btn {
+  font-size: 16px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.create-btn {
+  background-color: #ff9465;
+
+  &:hover{
+    background-color: #ffaf8c;
+  }
+
+  &:disabled {
+    background-color: #fff2ec;
+    cursor:not-allowed;
+  }
+}
+
 .container {
   border: 1px solid #ccc;
   padding: 20px;
   margin-top: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 
-  .old-ones {
+  .old-details {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
 
-    div {
+    .detail {
       font-size: 16px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
     }
+
+    .property-flag {
+      background-color: #ffaf8c;
+      padding: 5px;
+      border-radius: 5px;
+    }
+
   }
 
   form {
@@ -44,18 +77,11 @@ p {
     margin-top: 15px;
 
     button {
-      padding: 10px 20px;
-      font-size: 16px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      margin-right: 10px;
-
-      &:last-child {
-        background-color: #fff;
-        color: #000;
-        border: 1px solid #ccc;
-      }
+        font-size: 16px;
+        padding: 5px 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
     }
   }
 }

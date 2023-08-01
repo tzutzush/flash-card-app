@@ -1,5 +1,8 @@
 <header class="header">
-  <div class="logo">Flash Card App</div>
+  <div class="logo">
+    Flash Card App <span *ngIf="adminPage">Admin Interface</span>
+  </div>
+
   <div class="login-buttons">
     <button class="logout" (click)="logOut()">Log Out</button>
   </div>
