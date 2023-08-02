@@ -1,15 +1,27 @@
-.header {
+.admin-header{
+  background-color: #706fd3;
+}
+
+.user-header{
   background-color: #ff793f;
+}
+
+.header {
   padding: 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  z-index: 1000;
 
-  .logo {
-    color: white;
+
+  .title-container {
     font-size: 24px;
     font-weight: bold;
+    display: flex;
+    gap: 15px;
+  }
+
+  .title {
+    color: white;
   }
 
   .login-buttons {
@@ -28,8 +40,10 @@
       }
     }
 
-    .logout {
-      border-color: white;
+    .admin-logout:hover{
+      background-color: white;
+      color: #706fd3;
     }
+
   }
 }

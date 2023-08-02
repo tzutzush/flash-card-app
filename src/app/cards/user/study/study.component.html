@@ -1,15 +1,22 @@
 <app-header></app-header>
 <div class="container">
+  <div class="message">
+    <img
+      src="https://cdn-icons-png.flaticon.com/512/2452/2452150.png"
+      alt="learning-is-fun"
+    />
+    <h2>Don't forget to have fun!</h2>
+  </div>
   <div class="card-container">
+    <button class="back-btn btn" (click)="navigateBack()">
+      &LeftArrow; Modes page
+    </button>
     <div class="card">
       <div>{{ currentCard?.origin }}</div>
     </div>
     <div class="card">
       <div>{{ currentCard?.target }}</div>
     </div>
-    <button (click)="onNext()">Next</button>
-  </div>
-  <div class="navigation">
-    <button (click)="navigateBack()">Go back</button>
+    <button class="next-btn btn" (click)="onNext()">Next &RightArrow;</button>
   </div>
 </div>

@@ -1,17 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CardService } from '../../card-service.service';
 import { Card } from '../../card.model';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-study',
   templateUrl: './study.component.html',
   styleUrls: ['./study.component.scss'],
 })
-export class StudyComponent implements OnInit {
+export class StudyComponent implements OnInit, OnDestroy {
   private cards: Card[] = [];
   private currentIndex = 0;
   private category = '';
+  private categorySubscription!: Subscription;
   public currentCard: Card | null = null;
 
   constructor(private cardService: CardService, private router: Router) {}
@@ -22,6 +24,12 @@ export class StudyComponent implements OnInit {
     });
     this.cards = this.cardService.getCardsByCategory(this.category);
     this.currentCard = this.cards[this.currentIndex];
+  }
+
+  ngOnDestroy(): void {
+    if (this.categorySubscription !== undefined) {
+      this.categorySubscription.unsubscribe();
+    }
   }
 
   onNext() {

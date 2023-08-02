@@ -28,32 +28,65 @@
   </div>
   <form [formGroup]="cardForm">
     <label for="origin">New Origin: </label>
-    <input id="origin" type="text" formControlName="origin" />
+    <input
+      class="input-fields"
+      id="origin"
+      type="text"
+      formControlName="origin"
+    />
 
     <label for="target">New Target: </label>
-    <input id="target" type="text" formControlName="target" />
+    <input
+      class="input-fields"
+      id="target"
+      type="text"
+      formControlName="target"
+    />
 
     <label for="category">New Category: </label>
-    <input id="category" type="text" formControlName="category" />
+    <select class="input-fields" id="category" formControlName="category">
+      <option value="adjective">Adjective</option>
+      <option value="noun">Noun</option>
+      <option value="verb">Verb</option>
+    </select>
   </form>
   <div>
-    <button type="submit" [disabled]="!cardForm.valid" (click)="onSave()">
+    <button
+      class="save-btn btn"
+      type="submit"
+      [disabled]="!cardForm.valid"
+      (click)="onSave()"
+    >
       Save changes
     </button>
-    <button (click)="onCancel()">Cancel</button>
+    <button class="cancel-btn btn" (click)="onCancel()">Cancel</button>
   </div>
 </div>
 
 <div class="container" *ngIf="creating && !currentCard">
-  <form [formGroup]="cardForm">
+  <form class="form" [formGroup]="cardForm">
     <label for="origin">Origin: </label>
-    <input id="origin" type="text" formControlName="origin" />
+    <input
+      class="input-fields"
+      id="origin"
+      type="text"
+      formControlName="origin"
+    />
 
     <label for="target">Target: </label>
-    <input id="target" type="text" formControlName="target" />
+    <input
+      class="input-fields"
+      id="target"
+      type="text"
+      formControlName="target"
+    />
 
     <label for="category">Category: </label>
-    <input id="category" type="text" formControlName="category" />
+    <select class="input-fields" id="category" formControlName="category">
+      <option value="adjective">Adjective</option>
+      <option value="noun">Noun</option>
+      <option value="verb">Verb</option>
+    </select>
   </form>
   <div>
     <button

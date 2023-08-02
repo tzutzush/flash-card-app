@@ -1,42 +1,133 @@
 <!-- eslint-disable @angular-eslint/template/click-events-have-key-events -->
 <!-- eslint-disable @angular-eslint/template/interactive-supports-focus -->
 <app-header></app-header>
-<div class="information">
-  You can choose between study and inquiry. In study you can see both sides of
-  the cards, in inquiry you are only entitled to see one side for the first
-  time. Choose a category to start.
-</div>
-<div class="container">
-  <div>
-    <div class="title-container">
-      <h1 class="title">Study</h1>
-    </div>
-    <div class="categories">
-      <button (click)="goToCorrespondingComponent('noun', 'study')">
-        Noun
-      </button>
-      <button (click)="goToCorrespondingComponent('verb', 'study')">
-        Verb
-      </button>
-      <button (click)="goToCorrespondingComponent('adjective', 'study')">
-        Adjective
-      </button>
+<div class="component-container">
+  <div class="information">
+    <img
+      src="https://img.freepik.com/premium-vector/halogen-lightbulb-icon-light-bulb-sign-electricity-idea-symbol-icon-white-background-flat-vector-illustration_157943-266.jpg?w=2000"
+      alt="light-bulb"
+    />
+    <div class="info-text">
+      You can choose between modes to learn. Read more about them below. To
+      start learning, choose a category.
     </div>
   </div>
-  <div>
-    <div class="title-container">
-      <h1 class="title">Inquiry</h1>
+  <div class="container">
+    <div class="mode-container">
+      <div class="title-container">
+        <h1 class="title">Study</h1>
+      </div>
+      <div class="categories">
+        <div
+          class="category"
+          (click)="goToCorrespondingComponent('noun', 'study')"
+        >
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/184/184208.png"
+            alt="desk-icon"
+          />
+          <div class="category-definition">
+            <h3>Noun</h3>
+            <p>Words used to identify people, places, or things</p>
+          </div>
+        </div>
+        <div
+          class="category"
+          (click)="goToCorrespondingComponent('verb', 'study')"
+        >
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/1869/1869315.png"
+            alt="desk-icon"
+          />
+          <div class="category-definition">
+            <h3>Verb</h3>
+            <p>Words used to describe actions and states</p>
+          </div>
+        </div>
+        <div
+          class="category"
+          (click)="goToCorrespondingComponent('adjective', 'study')"
+        >
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/4437/4437923.png"
+            alt="desk-icon"
+          />
+          <div class="category-definition">
+            <h3>Adjective</h3>
+            <p>Words naming an attribute of a noun</p>
+          </div>
+        </div>
+      </div>
+      <div class="category-explanation">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/6348/6348248.png"
+          alt="user-guide"
+        />
+        <p>
+          You will see both sides of the card in front of you. You can cycle
+          through your cards indefinitely. This mode is ideal for memorization
+          of new words.
+        </p>
+      </div>
     </div>
-    <div class="categories">
-      <button (click)="goToCorrespondingComponent('noun', 'inquiry')">
-        Noun
-      </button>
-      <button (click)="goToCorrespondingComponent('verb', 'inquiry')">
-        Verb
-      </button>
-      <button (click)="goToCorrespondingComponent('adjective', 'inquiry')">
-        Adjective
-      </button>
+
+    <div class="mode-container">
+      <div class="title-container">
+        <h1 class="title">Inquiry</h1>
+      </div>
+      <div class="categories">
+        <div
+          class="category"
+          (click)="goToCorrespondingComponent('noun', 'inquiry')"
+        >
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/184/184208.png"
+            alt="desk-icon"
+          />
+          <div class="category-definition">
+            <h3>Noun</h3>
+            <p>Words used to identify people, places, or things</p>
+          </div>
+        </div>
+        <div
+          class="category"
+          (click)="goToCorrespondingComponent('verb', 'inquiry')"
+        >
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/1869/1869315.png"
+            alt="desk-icon"
+          />
+          <div class="category-definition">
+            <h3>Verb</h3>
+            <p>Words used to describe actions and states</p>
+          </div>
+        </div>
+        <div
+          class="category"
+          (click)="goToCorrespondingComponent('adjective', 'inquiry')"
+        >
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/4437/4437923.png"
+            alt="desk-icon"
+          />
+          <div class="category-definition">
+            <h3>Adjective</h3>
+            <p>Words naming an attribute of a noun</p>
+          </div>
+        </div>
+      </div>
+      <div class="category-explanation">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/6348/6348248.png"
+          alt="user-guide"
+        />
+        <p>
+          You will see 9 cards (or less if you don't have enough) on one page.
+          When you click on them, the solution is revealed. Then you can choose
+          if you were right or not. On these clicks the solution will always
+          appear, so we make sure you learn the correct meaning.
+        </p>
+      </div>
     </div>
   </div>
 </div>

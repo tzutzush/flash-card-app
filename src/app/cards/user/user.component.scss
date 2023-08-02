@@ -1,10 +1,36 @@
+.component-container {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 100px;
+}
+
+.information {
+  width: 600px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+
+  img{
+    height: 150px;
+    width: 150px;
+  }
+}
+
 .container {
   margin: 0;
   display: flex;
   align-items:first baseline;
   justify-content: center;
-  height: 80vh;
-  gap: 400px;
+  gap: 100px;
+}
+
+.mode-container {
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
 }
 
 .title-container{
@@ -15,4 +41,44 @@
 .categories{
   display: flex;
   gap: 20px;
+}
+
+.category {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 175px;
+  font-size: 14px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out, background-color 0.2s ease;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.05);
+    background-color: #ffc9b2;
+  }
+
+  &:active {
+    transform: scale(1.05);
+    background-color: #ffc9b2;
+  }
+
+  img {
+    height: 50px;
+    width: 50px;
+  }
+}
+
+.category-explanation{
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  img {
+    height: 75px;
+    width: 75px;
+  }
 }

@@ -4,8 +4,13 @@
     <div class="container">
       <div class="card-box">
         <div class="card" *ngFor="let card of cards; index as index">
-          <p>{{ card.origin }}</p>
-          <p>{{ card.target }}</p>
+          <div class="content">
+            <span>{{ card.origin }}</span
+            >&nbsp;
+            <p>/</p>
+            &nbsp;
+            <span>{{ card.target }}</span>
+          </div>
           <div class="button-group">
             <button class="edit-btn btn" (click)="onDisplayDetails(card)">
               Details

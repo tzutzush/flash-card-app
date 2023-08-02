@@ -11,12 +11,14 @@
         </div>
         <div class="button-container">
           <button
+            class="correct-btn btn"
             (click)="onCorrectGuess(card)"
             [disabled]="card.thrownIntoBucket"
           >
             I was right
           </button>
           <button
+            class="wrong-btn btn"
             (click)="onWrongGuess(card)"
             [disabled]="card.thrownIntoBucket"
           >
@@ -28,8 +30,22 @@
   </div>
 
   <div class="bucket-container">
-    <div class="bucket">Correct Bucket: {{ correctGuess }}</div>
-    <div class="bucket">Wrong Bucket: {{ wrongGuess }}</div>
-    <button (click)="nextCards()">Next cards</button>
+    <div class="bucket">
+      <img
+        src="https://cdn-icons-png.flaticon.com/512/975/975562.png"
+        alt="bucket"
+      />
+      <span>Correct: {{ correctGuess }}</span>
+    </div>
+    <div class="bucket">
+      <img
+        src="https://cdn-icons-png.flaticon.com/512/975/975562.png"
+        alt="bucket"
+      />
+      <span>Wrong: {{ wrongGuess }}</span>
+    </div>
+    <button class="next-btn btn" (click)="nextCards()">
+      Next cards &rightarrow;
+    </button>
   </div>
 </div>
