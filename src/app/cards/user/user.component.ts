@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { CardService } from '../card-service.service';
 
 @Component({
   selector: 'app-user',
@@ -8,14 +7,13 @@ import { CardService } from '../card-service.service';
   styleUrls: ['./user.component.scss'],
 })
 export class UserComponent {
-  constructor(private router: Router, private cardService: CardService) {}
+  constructor(private router: Router) {}
 
   goToCorrespondingComponent(category: string, page: string) {
-    this.cardService.category.next(category);
     if (page === 'study') {
-      this.router.navigate(['study']);
+      this.router.navigate([`study/${category}/0`]);
     } else if (page === 'inquiry') {
-      this.router.navigate(['inquiry']);
+      this.router.navigate([`inquiry/${category}`]);
     }
   }
 }

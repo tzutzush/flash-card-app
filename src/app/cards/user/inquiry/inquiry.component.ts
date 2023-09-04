@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CardService } from '../../card-service.service';
 import { Card } from '../../card.model';
 import { Subscription } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-inquiry',
@@ -16,16 +17,15 @@ export class InquiryComponent implements OnInit, OnDestroy {
   public correctGuess = 0;
   public wrongGuess = 0;
 
-  constructor(private cardService: CardService) {}
+  constructor(
+    private cardService: CardService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    this.categorySubscription = this.cardService.category.subscribe(
-      (category) => {
-        this.category = category;
-        this.cards = this.cardService.getCardsByCategory(this.category);
-        this.currentCards = this.getNextNineCards();
-      }
-    );
+    this.category = this.route.snapshot.params['category'];
+    this.cards = this.cardService.getCardsByCategory(this.category);
+    this.currentCards = this.getNextNineCards();
   }
 
   ngOnDestroy(): void {
@@ -48,7 +48,6 @@ export class InquiryComponent implements OnInit, OnDestroy {
   }
 
   nextCards() {
-    console.log('Next');
     this.currentCards = this.getNextNineCards();
     this.correctGuess = 0;
     this.wrongGuess = 0;

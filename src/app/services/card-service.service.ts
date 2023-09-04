@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Card } from './card.model';
-import { ReplaySubject } from 'rxjs';
+import { Card } from '../cards/card.model';
+import { ReplaySubject, Subject } from 'rxjs';
 import {
   Firestore,
   addDoc,
@@ -16,22 +16,21 @@ import { getDocs } from 'firebase/firestore';
 })
 export class CardService {
   public selectedCard = new ReplaySubject<Card>(1);
-  public cardsSubject: ReplaySubject<Card[]> = new ReplaySubject<Card[]>();
+  public cardsChanged = new Subject<Card[]>();
+  public category = new ReplaySubject<string>(1);
   private cards: Card[] = [];
 
   constructor(private firestore: Firestore) {
     this.initCards();
   }
 
-  async initCards(): Promise<boolean> {
+  private async initCards(): Promise<void> {
     try {
       const cards = await this.getCardsFromFireBase();
       this.cards = cards;
-      this.cardsSubject.next(cards);
-      return true;
+      this.cardsChanged.next(this.cards);
     } catch (error) {
       console.error('Error initializing cards:', error);
-      return false;
     }
   }
 
@@ -101,12 +100,12 @@ export class CardService {
     this.initCards();
   }
 
-  private getCards(): Card[] {
+  getCards(): Card[] {
     return this.cards;
   }
 
   getCardsByCategory(category: string): Card[] {
-    const cards = JSON.parse(JSON.stringify(this.getCards()));
+    const cards = this.getCards();
     const cardsByCategory = [];
 
     for (const card of cards) {

@@ -7,14 +7,25 @@ import { StudyComponent } from './cards/user/study/study.component';
 import { InquiryComponent } from './cards/user/inquiry/inquiry.component';
 import { userGuard } from './auth/guards/user.guard';
 import { adminGuard } from './auth/guards/admin.guard';
+import { cardResolver } from './cards/user/resolvers/card.resolver';
 
 const routes: Routes = [
   { path: '', redirectTo: '/auth', pathMatch: 'full' },
   { path: 'auth', component: AuthComponent },
   { path: 'admin', component: AdminComponent, canActivate: [adminGuard] },
   { path: 'user', component: UserComponent, canActivate: [userGuard] },
-  { path: 'study', component: StudyComponent, canActivate: [userGuard] },
-  { path: 'inquiry', component: InquiryComponent, canActivate: [userGuard] },
+  {
+    path: 'study/:category/:index',
+    component: StudyComponent,
+    canActivate: [userGuard],
+    resolve: { studyResolver: cardResolver },
+  },
+  {
+    path: 'inquiry/:category',
+    component: InquiryComponent,
+    canActivate: [userGuard],
+    resolve: { studyResolver: cardResolver },
+  },
 ];
 
 @NgModule({

@@ -12,18 +12,9 @@ export class CardDetailsComponent implements OnInit {
   currentCard: Card | null = null;
   creating = false;
   cardForm = new FormGroup({
-    origin: new FormControl('', [
-      Validators.required,
-      Validators.pattern('^[a-zA-Z]+$'),
-    ]),
-    target: new FormControl('', [
-      Validators.required,
-      Validators.pattern('^[a-zA-Z]+$'),
-    ]),
-    category: new FormControl('', [
-      Validators.required,
-      Validators.pattern('^[a-zA-Z]+$'),
-    ]),
+    origin: new FormControl('', [Validators.required]),
+    target: new FormControl('', [Validators.required]),
+    category: new FormControl('', [Validators.required]),
   });
 
   constructor(private cardService: CardService) {}

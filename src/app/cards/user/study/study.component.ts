@@ -1,35 +1,30 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CardService } from '../../card-service.service';
 import { Card } from '../../card.model';
-import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-study',
   templateUrl: './study.component.html',
   styleUrls: ['./study.component.scss'],
 })
-export class StudyComponent implements OnInit, OnDestroy {
+export class StudyComponent implements OnInit {
   private cards: Card[] = [];
   private currentIndex = 0;
   private category = '';
-  private categorySubscription!: Subscription;
   public currentCard: Card | null = null;
 
-  constructor(private cardService: CardService, private router: Router) {}
+  constructor(
+    private cardService: CardService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    this.cardService.category.subscribe((category) => {
-      this.category = category;
-    });
+    this.category = this.route.snapshot.params['category'];
+    this.currentIndex = this.route.snapshot.params['index'];
     this.cards = this.cardService.getCardsByCategory(this.category);
     this.currentCard = this.cards[this.currentIndex];
-  }
-
-  ngOnDestroy(): void {
-    if (this.categorySubscription !== undefined) {
-      this.categorySubscription.unsubscribe();
-    }
   }
 
   onNext() {
@@ -38,6 +33,7 @@ export class StudyComponent implements OnInit, OnDestroy {
       this.currentIndex = 0;
     }
     this.currentCard = this.cards[this.currentIndex];
+    this.router.navigate(['study', this.category, this.currentIndex]);
   }
 
   navigateBack() {
